@@ -119,7 +119,7 @@ ${versionPy}:
 evolver_test: all
 	-docker rmi -f evolvertestdocker/cactus:latest
 	docker build --network=host -t evolvertestdocker/cactus:latest . --build-arg CACTUS_COMMIT=${git_commit}
-	LD_LIBRARY_PATH=${PWD}/lib:${LD_LIBARY_PATH} PYTHONPATH="" CACTUS_DOCKER_ORG=evolvertestdocker ${PYTHON} -m pytest -s ${pytestOpts} test
+	LD_LIBRARY_PATH=${PWD}/lib:${LD_LIBARY_PATH} PYTHONPATH="" CACTUS_DOCKER_ORG=evolvertestdocker ${PYTHON} -m pytest ${pytestOpts} --junitxml=test-report.xml test
 	docker rmi -f evolvertestdocker/cactus:latest
 
 ##
